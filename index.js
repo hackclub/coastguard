@@ -36,7 +36,7 @@ controller.hears('', 'ambient', (bot, message) => {
 
     bot.whisper(
       message,
-      `Ahoy Matey! Ye posted a message with 'ot a picture or URL.\n\nI've removed yer post fer the time bein', but ye can repost a shipped project with a file or URL an I'll let it be. Let <@U0C7B14Q3> know if 'a made a mistaeke.`
+      `Ahoy Matey! Ye posted a message with 'ot a file ore URL.\n\nI've removed yer post fer the time bein', but ye can repost a shipped project with a file or URL an I'll let it be. Let <@U0C7B14Q3> know if a made a mistaeke.`
     )
   }
   //console.log(`${message.event.text}, ${message.event.channel}`)
