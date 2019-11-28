@@ -4,8 +4,7 @@ const controller = new Botkit.slackbot({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   clientSigningSecret: process.env.SIGNING_SECRET,
-  scopes: ['bot', 'chat:write:bot'],
-  debug: true
+  scopes: ['bot', 'chat:write:bot']
 })
 
 controller.spawn({
