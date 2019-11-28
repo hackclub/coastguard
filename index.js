@@ -19,6 +19,7 @@ controller.setupWebserver(process.env.PORT || 3000, (err, webserver) => {
 controller.hears('', 'ambient', (bot, message) => {
   const ts = message.event.ts
   const channel = message.event.channel
+  const text = message.event.text
 
   if (
     !hasUrl(message.event.text) &&
