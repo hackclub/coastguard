@@ -34,7 +34,7 @@ controller.hears('', 'ambient', (bot, message) => {
 
     bot.whisper(
       message,
-      `Ahoy Matey! Ye posted a message with 'ot a file ore URL:\n\n"${text}"\n\nI've removed yer post fer the time bein', but ye can repost a shipped project with a file or URL an I'll let it be. Let <@U0C7B14Q3> know if ye have any questions ore if a made a mistaeke.`
+      `Ahoy Matey! You posted a message without a file ore URL:\n\n"${text}"\n\nI've removed your post for the time being, but you can repost a shipped project with a file or URL an I'll let it be. Let <@U0C7B14Q3> know if you have any questions ore if a made a mistake.`
     )
   }
 })
