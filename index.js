@@ -24,7 +24,7 @@ controller.hears('', 'ambient', (bot, message) => {
   if (
     !hasUrl(message.event.text) &&
     message.event.thread_ts === undefined &&
-    (channel === 'GQSP5A4HF' || channel === 'CQPG0EUD8' || channel === 'C0M8PUPU6')
+    (channel === 'CQPG0EUD8' || channel === 'C0M8PUPU6')
   ) {
     bot.api.chat.delete({
       token: process.env.ACCESS_TOKEN,
