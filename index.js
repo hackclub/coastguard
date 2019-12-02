@@ -1,10 +1,12 @@
 const Botkit = require('botkit')
+const redisStorage = require('botkit-storage-redis')
 
 const controller = new Botkit.slackbot({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   clientSigningSecret: process.env.SIGNING_SECRET,
-  scopes: ['bot', 'chat:write:bot']
+  scopes: ['bot', 'chat:write:bot'],
+  storage: redisStorage({ url: process.env.REDISCLOUD_URL })
 })
 
 controller.spawn({ token: process.env.ACCESS_TOKEN })
