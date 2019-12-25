@@ -6,8 +6,7 @@ const controller = new Botkit.slackbot({
   clientSecret: process.env.CLIENT_SECRET,
   clientSigningSecret: process.env.SIGNING_SECRET,
   scopes: ['bot', 'chat:write:bot'],
-  storage: redisStorage({ url: process.env.REDISCLOUD_URL }),
-  debug: true
+  storage: redisStorage({ url: process.env.REDISCLOUD_URL })
 })
 
 controller.spawn({ token: process.env.ACCESS_TOKEN })
