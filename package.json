@@ -1,7 +1,8 @@
 {
-  "name": "hackclub-ship-moderator",
+  "name": "@hackclub/coastguard",
   "version": "1.0.0",
   "description": "A bot that deletes messages in Hack Club's #ship channel if they don't contain a link or attachment",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -11,10 +12,10 @@
     "botkit-storage-redis": "^1.1.0"
   },
   "engines": {
-    "node": "8.x"
+    "node": "12.x"
   },
   "repository": {
-    "url": "https://github.com/MatthewStanciu/hackclub-ship-moderator"
+    "url": "https://github.com/hackclub/coastguard"
   },
   "license": "MIT"
 }
