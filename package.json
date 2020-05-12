@@ -8,9 +8,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@slack/bolt": "^2.0.1",
-    "botkit": "^0.7.4",
-    "botkit-storage-redis": "^1.1.0"
+    "@slack/bolt": "^2.0.1"
   },
   "engines": {
     "node": "12.x"
