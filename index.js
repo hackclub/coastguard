@@ -9,7 +9,8 @@ app.event('message', async body => {
   if (!hasUrl(body.event.text)
     && typeof body.event.thread_ts === 'undefined'
     && (body.event.channel === 'CQPG0EUD8' || body.event.channel === 'C0M8PUPU6')
-    && body.event.subtype !== 'message_deleted' && body.event.files === undefined) {
+    && body.event.subtype !== 'message_deleted' && body.event.files === undefined
+    && body.message.text !== `<@${body.message.user}> has joined the channel`) {
     await app.client.chat.delete({
       token: process.env.OAUTH_TOKEN,
       channel: body.event.channel,
