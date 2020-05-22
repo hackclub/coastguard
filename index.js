@@ -86,7 +86,7 @@ const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
   let d = new Date(ts * 1000)
 
   shipsTable.create({
-    'Timestamp': d.toUTCString(),
+    'Timestamp': d.toISOString(),
     'Message': message,
     'User ID': userId,
     'User Name': username,
