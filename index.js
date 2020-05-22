@@ -66,7 +66,7 @@ app.event('message', async body => {
 });
 
 const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
-  let userInfo = await slackApp.client.users.info({
+  let userInfo = await app.client.users.info({
     token: process.env.BOT_TOKEN,
     user: body.event.user
   })
@@ -74,7 +74,7 @@ const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
   // let realName = userInfo.user.real_name
   let avatar = userInfo.user.profile.image_192
 
-  let profile = await slackApp.client.users.profile.get({
+  let profile = await app.client.users.profile.get({
     token: process.env.BOT_TOKEN,
     user: body.event.user
   })
