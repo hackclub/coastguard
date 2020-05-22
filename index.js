@@ -57,7 +57,7 @@ app.event('message', async body => {
       } else {
         let url = findUrl(body.message.text)
         console.log(url)
-        let message = body.message.text.replace(url, '')
+        let message = body.message.text.replace(`<${url}|${url}>`, '')
         console.log(message)
         logShip(body.message.user, message, url)
       }
