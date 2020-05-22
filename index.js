@@ -49,27 +49,47 @@ app.event('message', async body => {
             .then($ => {
               let imgUrl = $('img').attr('src')
               console.log(imgUrl)
-              logShip(body.message.user, body.message.text, imgUrl)
+              logShip(body.message.ts, body.message.user, body.message.text, imgUrl)
             })
         } else {
-          logShip(body.message.user, body.message.text, publicUrl.file.permalink_public)
+          logShip(body.message.ts, body.message.user, body.message.text, null, publicUrl.file.permalink_public)
         }
       } else {
         let url = findUrl(body.message.text)
         console.log(url)
         let message = body.message.text.replace(`<${url}|${url}>`, '').replace(`<${url}>`, '')
         console.log(message)
-        logShip(body.message.user, message, url)
+        logShip(body.message.ts, body.message.user, message, null, url)
       }
     }
   }
 });
 
-const logShip = (user, message, url) => {
+const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
+  let userInfo = await slackApp.client.users.info({
+    token: process.env.BOT_TOKEN,
+    user: body.event.user
+  })
+  let username = `@${userInfo.user.name}`
+  // let realName = userInfo.user.real_name
+  let avatar = userInfo.user.profile.image_192
+
+  let profile = await slackApp.client.users.profile.get({
+    token: process.env.BOT_TOKEN,
+    user: body.event.user
+  })
+  let website = profile.profile.fields['Xf5LNGS86L'].value
+
   shipsTable.create({
-    'User': user,
+    'Timestamp': ts,
     'Message': message,
-    'Project URL': url
+    'User ID': userId,
+    'User Name': username,
+    'User Avatar': avatar,
+    'User Website': website ? website : '',
+    'Image URL': imageUrl,
+    'Project URL': projectUrl,
+    'Public': true
   })
 }
 
