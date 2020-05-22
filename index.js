@@ -1,6 +1,7 @@
 const { App } = require('@slack/bolt')
 const AirtablePlus = require('airtable-plus')
 const cheerio = require('cheerio')
+const axios = reqiure('axios')
 
 const app = new App({
   signingSecret: process.env.SIGNING_SECRET,
