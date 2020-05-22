@@ -106,7 +106,7 @@ const hasUrl = message => (
 
 const findUrl = message => {
   let url = message.match(/<.*>/)[0]
-  return url.slice(1, urlMatch.indexOf('|'))
+  return url.slice(1, url.indexOf('|'))
 };
 
 (async () => {
