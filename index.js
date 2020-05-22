@@ -80,8 +80,10 @@ const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
   })
   let website = profile.profile.fields['Xf5LNGS86L'].value
 
+  let d = new Date(ts * 1000)
+
   shipsTable.create({
-    'Timestamp': ts,
+    'Timestamp': d.toUTCString(),
     'Message': message,
     'User ID': userId,
     'User Name': username,
