@@ -68,7 +68,7 @@ app.event('message', async body => {
 const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
   let userInfo = await app.client.users.info({
     token: process.env.BOT_TOKEN,
-    user: body.event.user
+    user: userId
   })
   let username = `@${userInfo.user.name}`
   // let realName = userInfo.user.real_name
@@ -76,7 +76,7 @@ const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
 
   let profile = await app.client.users.profile.get({
     token: process.env.BOT_TOKEN,
-    user: body.event.user
+    user: userId
   })
   let website = profile.profile.fields['Xf5LNGS86L'].value
 
