@@ -55,9 +55,10 @@ app.event('message', async body => {
           logShip(body.message.user, body.message.text, publicUrl.file.permalink_public)
         }
       } else {
-        let url = findUrl(body.message.text).catch(err => console.log(body.message.text, err))
+        let url = findUrl(body.message.text)
         console.log(url)
         let message = body.message.text.replace(url, '')
+        console.log(message)
         logShip(body.message.user, message, url)
       }
     }
