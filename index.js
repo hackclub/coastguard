@@ -80,9 +80,9 @@ const hasUrl = message => (
 
 const findUrl = message => (
   message.match('([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?')[0]
-)
+);
 
-  (async () => {
-    await app.start(process.env.PORT || 3000);
-    console.log("⚡️ Bolt app is running!");
-  })();
+(async () => {
+  await app.start(process.env.PORT || 3000);
+  console.log("⚡️ Bolt app is running!");
+})();
