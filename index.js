@@ -88,7 +88,7 @@ const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
     'User ID': userId,
     'User Name': username,
     'User Avatar': avatar,
-    'User Website': website ? website : '',
+    'User Website': website,
     'Image URL': imageUrl,
     'Project URL': projectUrl,
     'Public': true
