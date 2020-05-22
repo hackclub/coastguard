@@ -71,14 +71,17 @@ const logShip = async (ts, userId, message, imageUrl, projectUrl) => {
     user: userId
   })
   let username = `@${userInfo.user.name}`
-  // let realName = userInfo.user.real_name
   let avatar = userInfo.user.profile.image_192
 
   let profile = await app.client.users.profile.get({
     token: process.env.BOT_TOKEN,
     user: userId
   })
-  let website = profile.profile.fields['Xf5LNGS86L'].value
+
+  let website
+  try {
+    website = profile.profile.fields['Xf5LNGS86L'].value
+  } catch { }
 
   let d = new Date(ts * 1000)
 
