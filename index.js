@@ -17,7 +17,7 @@ const shipsTable = new AirtablePlus({
 app.event('message', async body => {
   if (body.event.channel === 'CQPG0EUD8' || body.event.channel === 'C0M8PUPU6') {
     if (!hasUrl(body.event.text)
-      && typeof body.event.thread_ts === 'undefined'
+      && !body.message.thread_ts
       && body.event.subtype !== 'message_deleted' && body.event.files === undefined
       && body.message.text !== `<@${body.message.user}> has joined the channel`) {
       await app.client.chat.delete({
