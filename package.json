@@ -8,7 +8,10 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@slack/bolt": "^2.0.1"
+    "@slack/bolt": "^2.0.1",
+    "airtable-plus": "^1.0.4",
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3"
   },
   "engines": {
     "node": "12.x"
