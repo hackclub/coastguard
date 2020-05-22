@@ -57,7 +57,7 @@ app.event('message', async body => {
       } else {
         let url = findUrl(body.message.text)
         console.log(url)
-        let message = body.message.text.replace(`<${url}|${url}>`, '').replace(`<${url}>`, '')
+        let message = body.message.text.replace(/<.*>/, '')
         console.log(message)
         logShip(body.message.ts, body.message.user, message, null, url)
       }
@@ -104,9 +104,10 @@ const hasUrl = message => (
   ).test(message)
 );
 
-const findUrl = message => (
-  message.match('([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?')[0]
-);
+const findUrl = message => {
+  let url = message.match(/<.*>/)[0]
+  return url.slice(1, urlMatch.indexOf('|'))
+};
 
 (async () => {
   await app.start(process.env.PORT || 3000);
