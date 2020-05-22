@@ -50,10 +50,10 @@ app.event('message', async body => {
             .then($ => {
               let imgUrl = $('img').attr('src')
               console.log(imgUrl)
-              await logShip(body.message.user, body.message.text, imgUrl)
+              logShip(body.message.user, body.message.text, imgUrl)
             })
         } else {
-          await logShip(body.message.user, body.message.text, publicUrl.file.permalink_public)
+          logShip(body.message.user, body.message.text, publicUrl.file.permalink_public)
         }
       }
     }
