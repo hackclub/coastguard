@@ -49,6 +49,7 @@ app.event('message', async (body) => {
           token: process.env.BOT_TOKEN,
           attachments: [],
           channel: body.event.channel,
+          user: body.event.user,
           text: `Ahoy matey! You posted a message in a thread and sent it to the channel - I've removed your message from the channel (as it's reserved for ships), but left it in the thread. Let <@U4QAK9SRW> know if you have any questions or if I made a mistake.`,
         })
       }
