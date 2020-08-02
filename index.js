@@ -5,7 +5,7 @@ const app = new App({
   token: process.env.BOT_TOKEN
 })
 
-app.event('message', async body => {
+app.event('message', async (body) => {
   if (
     (body.event.channel === 'CQPG0EUD8' ||
       body.event.channel === 'C0M8PUPU6') &&
@@ -48,17 +48,12 @@ app.event('message', async body => {
   }
 })
 
-const hasUrl = message =>
+const hasUrl = (message) =>
   new RegExp(
     '([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?(/.*)?'
   ).test(message)
 
-const findUrl = message => {
-  let url = message.match(/<.*>/)[0]
-  return url.slice(1, url.indexOf('|'))
-}
-
-(async () => {
-  await app.start(process.env.PORT || 3000)
-  console.log('⚡️ Bolt app is running!')
-})()
+    (async () => {
+      await app.start(process.env.PORT || 3000)
+      console.log('⚡️ Bolt app is running!')
+    })()
