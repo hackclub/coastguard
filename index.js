@@ -31,6 +31,36 @@ app.event('message', async body => {
         text: `Ahoy Matey! You posted a message without a file or URL:\n\n"${body.event.text}"\n\nI’ve removed your message, but you can repost a shipped project with a file or URL and I’ll let it be. Let <@U4QAK9SRW> know if you have any questions or if I made a mistake.`,
         user: body.event.user
       })
+    } else {
+      if (body.message.files) {
+        let fileId = body.message.files[0].id
+        let publicUrl = await app.client.files.sharedPublicURL({
+          token: process.env.USER_TOKEN,
+          file: fileId
+        })
+        console.log(publicUrl.file.permalink_public)
+
+        let acceptedFileTypes = ['jpg', 'jpeg', 'png', 'gif']
+        let containsAcceptedFileTypes = acceptedFileTypes.some(el => body.message.files[0].name.includes(el))
+
+        if (containsAcceptedFileTypes) {
+          axios.get(publicUrl.file.permalink_public)
+            .then(res => cheerio.load(res.data))
+            .then($ => {
+              let imgUrl = $('img').attr('src')
+              console.log(imgUrl)
+              logShip(body.message.ts, body.message.user, body.message.text, imgUrl)
+            })
+        } else {
+          logShip(body.message.ts, body.message.user, body.message.text, null, publicUrl.file.permalink_public)
+        }
+      } else {
+        let url = findUrl(body.message.text)
+        console.log(url)
+        let message = body.message.text.replace(/<.*>/, '')
+        console.log(message)
+        logShip(body.message.ts, body.message.user, message, null, url)
+      }
     }
   }
 });
