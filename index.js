@@ -12,6 +12,7 @@ app.event('message', async (body) => {
     (typeof body.message.thread_ts === 'undefined' ||
       body.event.subtype === 'thread_broadcast')
   ) {
+    console.log('message sent in', body.event.channel)
     if (
       (!hasUrl(body.event.text) &&
         body.event.subtype !== 'message_deleted' &&
@@ -20,6 +21,7 @@ app.event('message', async (body) => {
         `<@${body.message.user}> has joined the channel`) ||
       body.event.subtype == 'thread_broadcast'
     ) {
+      console.log('message should be deleted')
       await app.client.chat.delete({
         token: process.env.OAUTH_TOKEN,
         channel: body.event.channel,
@@ -27,6 +29,7 @@ app.event('message', async (body) => {
         broadcast_delete: true //if it's a threaded message, leave it in the thread
       })
       if (!body.event.hasOwnProperty('thread_ts')) {
+        console.log('message without file or url')
         //check if it's a threaded message
         await app.client.chat.postEphemeral({
           token: process.env.BOT_TOKEN,
@@ -36,6 +39,7 @@ app.event('message', async (body) => {
           user: body.event.user
         })
       } else {
+        console.log('message also sent to the channel')
         await app.client.chat.postEphemeral({
           token: process.env.BOT_TOKEN,
           attachments: [],
