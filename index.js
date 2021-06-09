@@ -56,7 +56,7 @@ app.event('message', async (body) => {
       body.event.subtype === 'thread_broadcast')
   ) {
     console.log('message sent in', body.event.channel)
-    let authed = []
+    let authed = ['USNPNJXNX', 'U0266FRGP', 'U01DV5F30CF', 'USNPNJXNX', 'U4QAK9SRW', 'UARKJATPW']
     if (
       (!authed.includes(body.event.user)) ||
       body.event.subtype == 'thread_broadcast'
