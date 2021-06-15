@@ -50,33 +50,6 @@ app.event('message', async (body) => {
       }
     }
   }
-  else if (
-    (body.event.channel === 'C024ARFLGS2') &&
-    (typeof body.message.thread_ts === 'undefined' ||
-      body.event.subtype === 'thread_broadcast')
-  ) {
-    console.log('message sent in', body.event.channel)
-    let authed = ['USNPNJXNX', 'U0266FRGP', 'U01DV5F30CF', 'USNPNJXNX', 'U4QAK9SRW', 'UARKJATPW']
-    if (
-      (!authed.includes(body.event.user)) ||
-      body.event.subtype == 'thread_broadcast'
-    ) {
-      console.log('message should be deleted')
-      await app.client.chat.delete({
-        token: process.env.OAUTH_TOKEN,
-        channel: body.event.channel,
-        ts: body.event.event_ts,
-        broadcast_delete: true //if it's a threaded message, leave it in the thread
-      })
-      await app.client.chat.postEphemeral({
-        token: process.env.BOT_TOKEN,
-        attachments: [],
-        channel: body.event.channel,
-        text: `Hey there! This channel is for Zephyr staff only, please post in a thread. Let <@USNPNJXNX> know if you have any questions or if I made a mistake.`,
-        user: body.event.user
-      })
-    }
-  }
 })
 
 const hasUrl = (message) => (
