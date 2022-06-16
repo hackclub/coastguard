@@ -7,6 +7,16 @@ const app = new App({
 
 app.event('message', async (body) => {
   if (
+    body.event.channel === 'C03L35R822Y'
+  ) {
+    await app.client.chat.delete({
+        token: process.env.OAUTH_TOKEN,
+        channel: body.event.channel,
+        ts: body.event.event_ts,
+        broadcast_delete: true //if it's a threaded message, leave it in the thread
+      })
+  }
+  if (
     (body.event.channel === 'CQPG0EUD8' ||
       body.event.channel === 'C0M8PUPU6') &&
     (typeof body.message.thread_ts === 'undefined' ||
@@ -22,12 +32,7 @@ app.event('message', async (body) => {
       body.event.subtype == 'thread_broadcast'
     ) {
       console.log('message should be deleted')
-      await app.client.chat.delete({
-        token: process.env.OAUTH_TOKEN,
-        channel: body.event.channel,
-        ts: body.event.event_ts,
-        broadcast_delete: true //if it's a threaded message, leave it in the thread
-      })
+      
       if (!body.event.hasOwnProperty('thread_ts')) {
         console.log('message without file or url')
         //check if it's a threaded message
