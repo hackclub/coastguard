@@ -7,20 +7,6 @@ const app = new App({
 
 app.event('message', async (body) => {
   if (
-    body.event.channel === 'C03L35R822Y'
-  ) {
-    try{
-    await app.client.chat.delete({
-        token: process.env.OAUTH_TOKEN,
-        channel: body.event.channel,
-        ts: body.event.event_ts,
-        broadcast_delete: true //if it's a threaded message, leave it in the thread
-      })
-    }
-    catch {
-    }
-  }
-  if (
     (body.event.channel === 'CQPG0EUD8' ||
       body.event.channel === 'C0M8PUPU6') &&
     (typeof body.message.thread_ts === 'undefined' ||
