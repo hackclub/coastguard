@@ -23,7 +23,7 @@ app.event('message', async (body) => {
     ) {
       console.log('message should be deleted')
       const deleteMessage = await app.client.chat.delete({
-        token: process.env.OAUTH_TOKEN,
+        token: process.env.SLACK_LEGACY_TOKEN,
         channel: body.event.channel,
         ts: body.event.event_ts,
         broadcast_delete: true //if it's a threaded message, leave it in the thread
