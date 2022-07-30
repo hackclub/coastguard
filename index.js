@@ -27,7 +27,7 @@ app.event('message', async (body) => {
         channel: body.event.channel,
         ts: body.event.event_ts,
         broadcast_delete: true //if it's a threaded message, leave it in the thread
-      })
+      }).catch(err => console.log('error deleting:', err))
       if (!body.event.hasOwnProperty('thread_ts')) {
         console.log('message without file or url')
         //check if it's a threaded message
